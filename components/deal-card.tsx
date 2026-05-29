@@ -1,10 +1,9 @@
 import type { Deal } from "@/lib/deals";
+import { formatWon } from "@/lib/format";
 
 type DealCardProps = {
   deal: Deal;
 };
-
-const currency = new Intl.NumberFormat("ko-KR");
 
 export function DealCard({ deal }: DealCardProps) {
   const progress = Math.min(
@@ -17,10 +16,13 @@ export function DealCard({ deal }: DealCardProps) {
   );
 
   return (
-    <article className="rounded-lg border border-wadeal-line bg-white p-3">
+    <article className="rounded-xl border border-wadeal-line bg-white p-3 shadow-[0_1px_0_rgba(17,24,39,0.03)]">
       <div className="flex gap-3">
-        <div className="grid h-[112px] w-[112px] shrink-0 place-items-center rounded-md bg-gray-100 text-6xl">
-          {deal.image}
+        <div className="relative grid h-[118px] w-[118px] shrink-0 place-items-center overflow-hidden rounded-lg bg-gray-100 text-6xl">
+          <span>{deal.image}</span>
+          <span className="absolute left-2 top-2 rounded bg-white/95 px-1.5 py-1 text-[10px] font-black text-wadeal-red shadow-sm">
+            {deal.deliveryBadge}
+          </span>
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
@@ -31,6 +33,9 @@ export function DealCard({ deal }: DealCardProps) {
               {deal.endsIn} 남음
             </span>
           </div>
+          <p className="mt-2 truncate text-[11px] font-bold text-gray-500">
+            {deal.categoryName} &gt; {deal.subcategory}
+          </p>
           <h3 className="mt-2 line-clamp-2 text-[15px] font-extrabold leading-5 text-wadeal-ink">
             {deal.title}
           </h3>
@@ -40,12 +45,18 @@ export function DealCard({ deal }: DealCardProps) {
           <div className="mt-2 flex items-baseline gap-1.5">
             <span className="text-base font-black text-wadeal-red">{discount}%</span>
             <span className="text-[20px] font-black tracking-normal text-wadeal-ink">
-              {currency.format(deal.currentPrice)}원
+              {formatWon(deal.currentPrice)}
             </span>
           </div>
           <p className="text-xs font-medium text-gray-400 line-through">
-            {currency.format(deal.originalPrice)}원
+            {formatWon(deal.originalPrice)}
           </p>
+          <div className="mt-1 flex items-center gap-1 text-[11px] font-bold text-gray-500">
+            <span className="text-amber-500">★ {deal.rating.toFixed(1)}</span>
+            <span>({deal.reviewCount.toLocaleString("ko-KR")})</span>
+            <span>·</span>
+            <span className="truncate">{deal.seller}</span>
+          </div>
         </div>
       </div>
 
@@ -67,10 +78,19 @@ export function DealCard({ deal }: DealCardProps) {
           <span className="text-wadeal-muted">
             최저가까지 <span className="text-wadeal-red">{remainingUsers}명</span>
           </span>
-          <span className="text-wadeal-ink">
-            최저 {currency.format(deal.lowestPrice)}원
-          </span>
+          <span className="text-wadeal-ink">최저 {formatWon(deal.lowestPrice)}</span>
         </div>
+      </div>
+
+      <div className="mt-3 flex gap-1.5 overflow-x-auto no-scrollbar">
+        {deal.tags.map((tag) => (
+          <span
+            className="shrink-0 rounded-full bg-gray-100 px-2 py-1 text-[11px] font-bold text-gray-600"
+            key={tag}
+          >
+            #{tag}
+          </span>
+        ))}
       </div>
 
       <div className="mt-3 grid grid-cols-[48px_1fr] gap-2">
