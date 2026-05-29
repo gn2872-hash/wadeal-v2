@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { TossPaymentPanel } from "@/app/checkout/toss-payment-panel";
 import { BottomNavigation } from "@/components/bottom-navigation";
 import { Header } from "@/components/header";
 import {
@@ -186,20 +187,7 @@ export default async function CheckoutPage({ searchParams }: CheckoutPageProps) 
           </dl>
         </section>
 
-        <div className="grid grid-cols-2 gap-2">
-          <Link
-            className="h-12 rounded-xl border border-wadeal-line text-center text-sm font-black leading-[48px] text-wadeal-ink"
-            href="/checkout?payment=failed"
-          >
-            실패 상태 보기
-          </Link>
-          <Link
-            className="h-12 rounded-xl bg-wadeal-red text-center text-sm font-black leading-[48px] text-white"
-            href="/order/complete"
-          >
-            Toss 결제하기
-          </Link>
-        </div>
+        <TossPaymentPanel orderId="WD202605290128" amount={summary.total} />
       </div>
       <BottomNavigation />
     </main>
