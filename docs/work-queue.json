@@ -1,37 +1,107 @@
 {
   "project": "Wadeal",
-  "updatedFor": "admin-commerce-operations",
+  "updatedFor": "opening-qa-2026-05-30",
   "items": [
+    {
+      "id": "opening-qa-build",
+      "status": "done",
+      "title": "Run full Next.js build for opening QA",
+      "evidence": [
+        "npm run build PASS",
+        "74 app routes generated"
+      ]
+    },
+    {
+      "id": "route-access-middleware",
+      "status": "deferred",
+      "title": "Add route-level guest/buyer/seller/admin access middleware",
+      "dependsOn": [
+        "supabase-auth",
+        "role-claims"
+      ]
+    },
+    {
+      "id": "supabase-schema-rls",
+      "status": "deferred",
+      "title": "Create Supabase tables and RLS for buyer, seller, admin workflows",
+      "dependsOn": [
+        "schema-design",
+        "security-review"
+      ]
+    },
+    {
+      "id": "toss-e2e-test-mode",
+      "status": "deferred",
+      "title": "Verify Toss confirm, cancel, and webhook in test mode",
+      "dependsOn": [
+        "vercel-env",
+        "toss-test-keys"
+      ]
+    },
+    {
+      "id": "kakao-prod-oauth",
+      "status": "deferred",
+      "title": "Configure Kakao production OAuth app and callbacks",
+      "dependsOn": [
+        "oauth-app-config",
+        "vercel-env"
+      ]
+    },
+    {
+      "id": "storage-upload-e2e",
+      "status": "deferred",
+      "title": "Verify storage uploads for products, banners, reviews, and seller documents",
+      "dependsOn": [
+        "supabase-storage-policy",
+        "admin-upload-ui"
+      ]
+    },
     {
       "id": "admin-categories-db",
       "status": "deferred",
       "title": "Persist admin category ordering and visibility",
-      "dependsOn": ["supabase-auth", "admin-rls"]
+      "dependsOn": [
+        "supabase-auth",
+        "admin-rls"
+      ]
     },
     {
       "id": "admin-banners-assets",
       "status": "deferred",
       "title": "Connect banner manager to uploaded mobile/PC assets",
-      "dependsOn": ["storage-policy", "admin-rls"]
+      "dependsOn": [
+        "storage-policy",
+        "admin-rls"
+      ]
     },
     {
       "id": "buyer-events-page",
       "status": "ready-ui",
       "title": "Buyer event page uses admin event fallback data",
-      "routes": ["/events", "/admin/events"]
+      "routes": [
+        "/events",
+        "/admin/events"
+      ]
     },
     {
       "id": "admin-coupons-checkout",
       "status": "deferred",
       "title": "Validate admin coupons during checkout selection",
-      "dependsOn": ["orders-db", "user-coupons-db", "coupon-usage-ledger"]
-    }
-  ],
+      "dependsOn": [
+        "orders-db",
+        "user-coupons-db",
+        "coupon-usage-ledger"
+      ]
+    },
     {
       "id": "seller-center-db",
       "status": "deferred",
       "title": "Persist seller center product requests, orders, CS, settlement, and notifications",
-      "dependsOn": ["supabase-auth", "seller-rls", "orders-db"]
+      "dependsOn": [
+        "supabase-auth",
+        "seller-rls",
+        "orders-db"
+      ]
     }
   ]
 }

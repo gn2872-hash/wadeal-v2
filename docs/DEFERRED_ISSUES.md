@@ -55,3 +55,23 @@ auth, RLS, and tables are connected.
 - Persist seller order memos, invoice numbers, delivery state changes, and CS replies
   with audit logs.
 - Connect settlement payout status to admin settlement confirmation and payment runs.
+
+
+## Opening QA risks
+
+- Add production Vercel env before deployment:
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  - `SUPABASE_SERVICE_ROLE_KEY`
+  - `NEXT_PUBLIC_TOSS_CLIENT_KEY`
+  - `TOSS_SECRET_KEY`
+  - `TOSS_WEBHOOK_SECRET`
+  - `NEXT_PUBLIC_SITE_URL`
+- Configure Kakao production OAuth app keys and callback URLs if Kakao login is in scope.
+- Add route-level middleware or server layout guards for guest/buyer/seller/admin access.
+- Verify Supabase RLS for profiles, orders, seller data, admin operation data, coupons,
+  points, reviews, inquiries, wishlists, and storage objects.
+- Verify Storage upload E2E for product images, detail images, banners, review images,
+  and seller documents.
+- Verify Toss Confirm, Cancel, and Webhook flows in test mode before using live keys.
+- Keep push/Vercel production deployment pending until QA report deferred items are closed.
