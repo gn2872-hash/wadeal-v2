@@ -9,8 +9,8 @@ const navItems = [
   { label: "홈", icon: HomeIcon, href: "/", match: "/" },
   { label: "카테고리", icon: GridIcon, href: "/categories", match: "/categor" },
   { label: "검색", icon: SearchIcon, href: "/search", match: "/search" },
-  { label: "찜", icon: HeartIcon, href: "/search?sort=popular", match: "/favorites" },
-  { label: "마이", icon: UserIcon, href: "/search?mode=my", match: "/my" },
+  { label: "찜", icon: HeartIcon, href: "/favorites", match: "/favorites" },
+  { label: "마이", icon: UserIcon, href: "/my", match: "/my" },
 ];
 
 export function BottomNavigation() {

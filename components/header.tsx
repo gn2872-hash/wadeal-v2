@@ -1,6 +1,7 @@
 import Link from "next/link";
 
-import { SearchIcon } from "@/components/icons";
+import { CartIcon, SearchIcon } from "@/components/icons";
+import { mockCartLineCount } from "@/lib/buyer";
 
 export function Header() {
   return (
@@ -24,6 +25,16 @@ export function Header() {
             type="search"
           />
         </form>
+        <Link
+          aria-label={`장바구니 ${mockCartLineCount}개`}
+          className="relative grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gray-100 text-wadeal-ink active:bg-gray-200"
+          href="/cart"
+        >
+          <CartIcon className="h-5 w-5" />
+          <span className="absolute -right-1 -top-1 grid min-w-5 place-items-center rounded-full bg-wadeal-red px-1 text-[10px] font-black leading-5 text-white">
+            {mockCartLineCount}
+          </span>
+        </Link>
       </div>
     </header>
   );

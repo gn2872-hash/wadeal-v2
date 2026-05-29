@@ -41,3 +41,12 @@ export function UserIcon({ className = "h-5 w-5" }: IconProps) {
     </svg>
   );
 }
+
+export function CartIcon({ className = "h-5 w-5" }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 5h2.2l1.7 10.2a2 2 0 0 0 2 1.7h6.9a2 2 0 0 0 1.9-1.5L20 9H7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm7 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+    </svg>
+  );
+}
