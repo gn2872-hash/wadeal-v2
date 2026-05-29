@@ -50,3 +50,12 @@ Latest QA result: PASS. See `docs/QA_REPORT_2026-05-30.md`.
 - Vercel production deploy is intentionally pending user approval
 - Required env and Supabase RLS/storage checks are documented in `docs/PRE_DEPLOY_CHECKLIST.md`
 - Current production readiness verdict: UI/build ready, production external integrations deferred
+
+
+## Post-deploy QA status
+
+- Vercel deployment was created successfully by GitHub/Vercel integration.
+- Production URL: `https://wadeal-v2-879rzws66-kimgome0222-2396s-projects.vercel.app`
+- Public route access is blocked by Vercel Authentication Required (HTTP 401).
+- Next task: disable/provide bypass for Vercel Deployment Protection and rerun
+  buyer/seller/admin/mobile QA using `docs/POST_DEPLOY_QA.md`.

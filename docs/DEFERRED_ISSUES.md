@@ -86,3 +86,13 @@ auth, RLS, and tables are connected.
 - Toss live payment/cancel/webhook must remain disabled until keys and webhook verification pass in test mode.
 - Kakao production OAuth and Kakao notification sending are not configured in this checkout.
 - Production deploy is pending explicit user instruction: `진짜 배포해`.
+
+
+## Post-deploy QA blocker
+
+- Production deployment URL currently returns Vercel HTTP 401 Authentication Required:
+  `https://wadeal-v2-879rzws66-kimgome0222-2396s-projects.vercel.app`
+- Real buyer/seller/admin/mobile QA is blocked until Vercel Deployment Protection
+  is disabled or a valid bypass/auth method is provided.
+- After public access is fixed, rerun `docs/POST_DEPLOY_QA.md` checklist against
+  the same production URL or the current aliased production domain.
