@@ -11,6 +11,7 @@ import {
   wishlistDeals,
 } from "@/lib/account";
 import { mockCommercialOrders, orderStatusLabels } from "@/lib/order-status";
+import { getSupabaseReadiness, mypageRequiredTables } from "@/lib/supabase/status";
 import { formatWon } from "@/lib/format";
 
 const shortcutMenus = [
@@ -24,6 +25,7 @@ const shortcutMenus = [
 
 export default function MypageHome() {
   const availableCoupons = accountCoupons.filter((coupon) => coupon.status === "available").length;
+  const supabase = getSupabaseReadiness();
 
   return (
     <main className="mx-auto min-h-screen max-w-[480px] bg-white pb-24 shadow-soft">
@@ -105,6 +107,28 @@ export default function MypageHome() {
                 <div className="grid h-24 place-items-center rounded-xl bg-gray-100 text-5xl">{deal.image}</div>
                 <p className="mt-2 line-clamp-2 text-xs font-black leading-4 text-wadeal-ink">{deal.title}</p>
               </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-wadeal-line bg-white p-4">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <h2 className="text-base font-black text-wadeal-ink">보안/DB 연결 상태</h2>
+              <p className="mt-1 text-xs font-bold text-wadeal-muted">로그인 사용자 본인 정보만 조회/수정하도록 서버 액션에서 userId를 검증합니다.</p>
+            </div>
+            <span className={`shrink-0 rounded-full px-2 py-1 text-[11px] font-black ${supabase.readyForClient && supabase.readyForServer ? "bg-emerald-50 text-emerald-700" : "bg-red-50 text-wadeal-red"}`}>
+              {supabase.readyForClient && supabase.readyForServer ? "ready" : "fallback"}
+            </span>
+          </div>
+          <p className="mt-3 rounded-xl bg-gray-50 p-3 text-xs font-bold leading-5 text-wadeal-muted">
+            {supabase.fallbackMessage}
+          </p>
+          <div className="mt-3 flex gap-2 overflow-x-auto no-scrollbar">
+            {mypageRequiredTables.map((table) => (
+              <span className="shrink-0 rounded-full bg-gray-100 px-3 py-1.5 text-[11px] font-black text-gray-600" key={table}>
+                {table}
+              </span>
             ))}
           </div>
         </section>

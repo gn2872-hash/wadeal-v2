@@ -13,6 +13,13 @@ export default function ProfilePage() {
           <h1 className="mt-2 text-2xl font-black">개인정보 관리</h1>
           <p className="mt-2 text-sm font-bold text-gray-200">DB 컬럼 연결 전에도 수정 UI와 실패 안전 메시지를 검증합니다.</p>
         </section>
+        <section className="rounded-2xl border border-red-100 bg-red-50 p-4">
+          <h2 className="text-base font-black text-wadeal-red">개인정보 저장 안전 안내</h2>
+          <p className="mt-2 text-xs font-bold leading-5 text-red-500">
+            수정 실패 시 기존 개인정보를 덮어쓰지 않고 안전 메시지를 표시하는 구조입니다. 실제 저장은 Supabase profiles RLS 연결 후 활성화됩니다.
+          </p>
+        </section>
+
         <form action={updateProfileAction} className="space-y-3 rounded-2xl border border-wadeal-line bg-white p-4">
           <input name="userId" type="hidden" value={mockBuyerProfile.userId} />
           {[
