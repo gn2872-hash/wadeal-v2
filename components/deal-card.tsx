@@ -1,5 +1,8 @@
+import Link from "next/link";
+
 import type { Deal } from "@/lib/deals";
 import { formatWon } from "@/lib/format";
+import { getProductSlugByDealId } from "@/lib/products";
 
 type DealCardProps = {
   deal: Deal;
@@ -14,6 +17,7 @@ export function DealCard({ deal }: DealCardProps) {
   const discount = Math.round(
     ((deal.originalPrice - deal.currentPrice) / deal.originalPrice) * 100,
   );
+  const productHref = `/products/${getProductSlugByDealId(deal.id)}`;
 
   return (
     <article className="rounded-xl border border-wadeal-line bg-white p-3 shadow-[0_1px_0_rgba(17,24,39,0.03)]">
@@ -36,9 +40,9 @@ export function DealCard({ deal }: DealCardProps) {
           <p className="mt-2 truncate text-[11px] font-bold text-gray-500">
             {deal.categoryName} &gt; {deal.subcategory}
           </p>
-          <h3 className="mt-2 line-clamp-2 text-[15px] font-extrabold leading-5 text-wadeal-ink">
+          <Link className="mt-2 block line-clamp-2 text-[15px] font-extrabold leading-5 text-wadeal-ink" href={productHref}>
             {deal.title}
-          </h3>
+          </Link>
           <p className="mt-1 truncate text-xs font-medium text-wadeal-muted">
             {deal.subtitle}
           </p>
@@ -102,12 +106,12 @@ export function DealCard({ deal }: DealCardProps) {
         >
           톡
         </button>
-        <button
-          className="h-11 rounded-md bg-wadeal-red text-sm font-black text-white active:bg-red-700"
-          type="button"
+        <Link
+          className="h-11 rounded-md bg-wadeal-red text-center text-sm font-black leading-[44px] text-white active:bg-red-700"
+          href={productHref}
         >
           공동구매 참여하기
-        </button>
+        </Link>
       </div>
     </article>
   );
