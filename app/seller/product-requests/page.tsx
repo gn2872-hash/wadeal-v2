@@ -1,0 +1,13 @@
+import Link from "next/link";
+
+import { saveSellerProductRequestAction } from "@/app/actions/seller/actions";
+import { BottomNavigation } from "@/components/bottom-navigation";
+import { Header } from "@/components/header";
+import { sellerProductRequests } from "@/lib/seller";
+import { formatWon } from "@/lib/format";
+
+export default function SellerProductRequestsPage() {
+  return (
+    <main className="mx-auto min-h-screen max-w-[480px] bg-white pb-24 shadow-soft"><Header /><div className="space-y-4 px-4 pt-4 pb-8"><section className="rounded-2xl bg-wadeal-ink p-5 text-white"><p className="text-xs font-black text-red-200">Product Requests</p><h1 className="mt-2 text-2xl font-black">상품 등록 요청</h1><p className="mt-2 text-sm font-bold text-gray-200">관리자 승인 전까지 대기 상태로 표시됩니다.</p></section><form action={saveSellerProductRequestAction} className="space-y-3 rounded-2xl border border-wadeal-line bg-white p-4"><h2 className="text-base font-black text-wadeal-ink">신규 요청</h2>{[["상품명","title"],["카테고리","category"],["판매가","salePrice"],["공동구매 목표 인원","targetParticipants"],["대표 이미지","representativeImage"],["상세 이미지","detailImages"],["재고","stock"],["옵션","options"],["배송 정보","deliveryInfo"]].map(([label,name])=><label className="block" key={name}><span className="text-xs font-black text-wadeal-ink">{label}</span><input className="mt-2 h-10 w-full rounded-xl bg-gray-50 px-3 text-sm font-bold outline-none" name={name} /></label>)}<input className="h-10 w-full rounded-xl bg-gray-50 px-3 text-sm font-bold outline-none" name="discountTiers" placeholder="할인 구간 예: 50명 22900원, 100명 20900원" /><button className="h-11 w-full rounded-xl bg-wadeal-red text-sm font-black text-white" type="submit">등록 요청</button></form><section className="space-y-3">{sellerProductRequests.map((request)=><Link className="block rounded-2xl border border-wadeal-line bg-white p-4" href={`/seller/product-requests/${request.id}`} key={request.id}><div className="flex items-start justify-between gap-3"><div><p className="text-[11px] font-black text-wadeal-muted">{request.id} · {request.category}</p><h2 className="mt-1 text-base font-black text-wadeal-ink">{request.title}</h2><p className="mt-1 text-xs font-bold text-wadeal-muted">목표 {request.targetParticipants}명 · {formatWon(request.salePrice)}</p></div><span className="rounded-full bg-red-50 px-2 py-1 text-[11px] font-black text-wadeal-red">{request.status}</span></div>{request.rejectionReason ? <p className="mt-3 rounded-xl bg-red-50 p-3 text-xs font-bold text-red-500">반려 사유: {request.rejectionReason}</p> : null}</Link>)}</section></div><BottomNavigation /></main>
+  );
+}

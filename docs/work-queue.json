@@ -26,5 +26,12 @@
       "title": "Validate admin coupons during checkout selection",
       "dependsOn": ["orders-db", "user-coupons-db", "coupon-usage-ledger"]
     }
+  ],
+    {
+      "id": "seller-center-db",
+      "status": "deferred",
+      "title": "Persist seller center product requests, orders, CS, settlement, and notifications",
+      "dependsOn": ["supabase-auth", "seller-rls", "orders-db"]
+    }
   ]
 }
