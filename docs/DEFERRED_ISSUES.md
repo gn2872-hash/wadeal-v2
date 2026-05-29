@@ -75,3 +75,14 @@ auth, RLS, and tables are connected.
   and seller documents.
 - Verify Toss Confirm, Cancel, and Webhook flows in test mode before using live keys.
 - Keep push/Vercel production deployment pending until QA report deferred items are closed.
+
+
+## Pre-deploy deferred items
+
+- Vercel env is not verified from this Cloud environment because Vercel CLI is not installed in PATH.
+- Current Cloud env is missing Supabase, Toss, Kakao, and `NEXT_PUBLIC_SITE_URL` keys.
+- Supabase migration 030-045 status cannot be verified because migration files are not present in this repository checkout.
+- Supabase RLS and Storage bucket policies must be verified externally before production deploy.
+- Toss live payment/cancel/webhook must remain disabled until keys and webhook verification pass in test mode.
+- Kakao production OAuth and Kakao notification sending are not configured in this checkout.
+- Production deploy is pending explicit user instruction: `진짜 배포해`.

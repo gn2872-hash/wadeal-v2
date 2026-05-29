@@ -11,6 +11,11 @@ build/
 # local env files
 .env*.local
 
+# deployment/local artifacts
+.vercel/
+backups/
+*.tar.gz
+
 # logs
 npm-debug.log*
 yarn-debug.log*

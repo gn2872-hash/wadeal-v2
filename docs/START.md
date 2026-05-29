@@ -40,3 +40,13 @@ Latest QA result: PASS. See `docs/QA_REPORT_2026-05-30.md`.
 - Do not run production Vercel deployment until env/RLS/payment checklist is done.
 - Do not enable live payments until Toss live key, webhook, and cancel API are verified.
 - Do not trust client-submitted `userId`; server must derive user from session.
+
+
+## Deployment readiness snapshot
+
+- Latest deploy readiness build: `npm run build` PASS
+- Actual Cloud path: `/workspace`
+- Local requested path `~/Documents/wadeal-v2` is not present in this environment
+- Vercel production deploy is intentionally pending user approval
+- Required env and Supabase RLS/storage checks are documented in `docs/PRE_DEPLOY_CHECKLIST.md`
+- Current production readiness verdict: UI/build ready, production external integrations deferred

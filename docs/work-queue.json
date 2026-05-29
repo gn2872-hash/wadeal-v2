@@ -1,6 +1,6 @@
 {
   "project": "Wadeal",
-  "updatedFor": "opening-qa-2026-05-30",
+  "updatedFor": "pre-deploy-readiness",
   "items": [
     {
       "id": "opening-qa-build",
@@ -102,6 +102,29 @@
         "seller-rls",
         "orders-db"
       ]
+    },
+    {
+      "id": "pre-deploy-env-verification",
+      "status": "deferred",
+      "title": "Verify Vercel production env for Supabase, Toss, Kakao, and site URL",
+      "dependsOn": [
+        "vercel-project-access",
+        "production-secrets"
+      ]
+    },
+    {
+      "id": "supabase-migrations-030-045-verify",
+      "status": "deferred",
+      "title": "Verify Supabase migration 030-045 application status externally",
+      "dependsOn": [
+        "supabase-project-access"
+      ]
+    },
+    {
+      "id": "production-deploy-approval",
+      "status": "blocked",
+      "title": "Run production deployment only after explicit user approval",
+      "blockedUntil": "user says 진짜 배포해"
     }
   ]
 }
