@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   moderateProductRequestAction,
   moderateRefundAction,
@@ -87,6 +89,25 @@ export default function AdminPage() {
               <p className="mt-2 text-xl font-black text-wadeal-ink">{stat.value}</p>
             </div>
           ))}
+        </section>
+
+
+
+        <section className="rounded-2xl border border-wadeal-line bg-white p-4">
+          <h2 className="text-base font-black text-wadeal-ink">쇼핑몰 운영 관리</h2>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            {[
+              ["카테고리", "/admin/categories", "상위/하위/노출순서"],
+              ["배너", "/admin/banners", "이미지/링크/기간"],
+              ["이벤트", "/admin/events", "기획전/연결상품"],
+              ["쿠폰", "/admin/coupons", "할인/발급/대상"],
+            ].map(([label, href, description]) => (
+              <Link className="rounded-xl bg-gray-50 p-3" href={href} key={href}>
+                <span className="block text-sm font-black text-wadeal-ink">{label}</span>
+                <span className="mt-1 block text-[11px] font-bold text-wadeal-muted">{description}</span>
+              </Link>
+            ))}
+          </div>
         </section>
 
         <section className="rounded-2xl border border-wadeal-line bg-white p-4">

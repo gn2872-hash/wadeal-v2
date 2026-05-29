@@ -28,3 +28,16 @@ auth, RLS, and tables are connected.
 - Never trust a client-submitted `userId` after Supabase is connected.
 - Derive the target user from the authenticated session on the server.
 - Keep admin-only access separate from buyer mypage routes.
+
+
+## Admin commerce operations
+
+- Persist `lib/admin-commerce.ts` fallback data into Supabase tables for
+  categories, banners, events, and operational coupons.
+- Add RLS/admin policies so only admin users can mutate commerce operation data.
+- Connect `adminCoupons` to buyer `/mypage/coupons` and checkout coupon selection
+  with server-side validation of audience, period, product/category restriction,
+  minimum order amount, issue limit, and usage count.
+- Replace banner fallback URLs with uploaded assets and storage access policies.
+- Add audit logs for category visibility/order changes, banner publish changes,
+  event publish changes, and coupon pause/delete actions.

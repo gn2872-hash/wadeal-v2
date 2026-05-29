@@ -1,0 +1,30 @@
+{
+  "project": "Wadeal",
+  "updatedFor": "admin-commerce-operations",
+  "items": [
+    {
+      "id": "admin-categories-db",
+      "status": "deferred",
+      "title": "Persist admin category ordering and visibility",
+      "dependsOn": ["supabase-auth", "admin-rls"]
+    },
+    {
+      "id": "admin-banners-assets",
+      "status": "deferred",
+      "title": "Connect banner manager to uploaded mobile/PC assets",
+      "dependsOn": ["storage-policy", "admin-rls"]
+    },
+    {
+      "id": "buyer-events-page",
+      "status": "ready-ui",
+      "title": "Buyer event page uses admin event fallback data",
+      "routes": ["/events", "/admin/events"]
+    },
+    {
+      "id": "admin-coupons-checkout",
+      "status": "deferred",
+      "title": "Validate admin coupons during checkout selection",
+      "dependsOn": ["orders-db", "user-coupons-db", "coupon-usage-ledger"]
+    }
+  ]
+}
